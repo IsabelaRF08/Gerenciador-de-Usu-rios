@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import sql from './database.js';
+import sql from './bd.js';
 
 const app = express();
 app.use(cors());

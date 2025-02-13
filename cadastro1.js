@@ -21,17 +21,16 @@ document.querySelector('#cadastrar').addEventListener('click', async function(ev
             body: JSON.stringify({ email, usuario })
         });
 
+        const data = await res.json();
+
         if (res.ok) {
             alert('Cadastrado com sucesso');
-        } else if (res.status === 409) {
-            msgError.textContent = 'Email já cadastrado';
-        } else if (res.status === 500) {
-            msgError.textContent = 'Ops... houve um erro ao cadastrar';
         } else {
-            msgError.textContent = 'Erro desconhecido';
+            msgError.textContent = data.erro || 'Erro desconhecido';
         }
     } catch (error) {
         console.error("Erro ao cadastrar:", error);
         msgError.textContent = "Erro de conexão com o servidor.";
     }
 });
+
